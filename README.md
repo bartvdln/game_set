@@ -7,7 +7,7 @@
   <li>Schrijf ook een algoritme die één set vindt.
   <li>Bouw een spel om deze algoritmen heen. Je programma moet 12 kaarten op het scherm tonen (genummerd) en de gebruiker vragen om een SET in te voeren (bijvoorbeeld 1, 5, 10 als kaarten 1, 5 en 10 samen een set vormen). Als de gebruiker na een gegeven tijd nog geen SET heeft gevonden en de computer heeft er wel een, dan krijgt de computer een punt. Je kunt de moeilijkheid van het spel aanpassen door deze tijd korter of langer te maken. Als er na een vooraf bepaalde tijd helemaal geen set is gevonden, verwijder dan de bovenste 3 kaarten en vul aan met 3 nieuwe kaarten. Je mag de python module pygame gebruiken.</li>
 </u1>
-
+<br>
 <p>Laten we allereerst onze klassen definieren. Iedere kaart uit het spel Set heeft vier eigenschappen: kleur, vorm, opvulling en aantal. Elke eigenschap heeft drie verschillende opties.<br>
 Kleuren: rood (r), groen (g) en paars (p). <br>
 Vormen: ruit (r), ovaal (o) en golf (g). <br>
