@@ -14,3 +14,15 @@ def vind_sets(kaarten):
                 if (kaarten[i][0] == kaarten[j][0] == kaarten[k][0] or kaarten[i][0] != kaarten[j][0] != kaarten[k][0] != kaarten[i][0]) and (kaarten[i][1] == kaarten[j][1] == kaarten[k][1] or kaarten[i][1] != kaarten[j][1] != kaarten[k][1] != kaarten[i][1]) and (kaarten[i][2] == kaarten[j][2] == kaarten[k][2] or kaarten[i][2] != kaarten[j][2] != kaarten[k][2] != kaarten[i][2]) and (kaarten[i][3] == kaarten[j][3] == kaarten[k][3] or kaarten[i][3] != kaarten[j][3] != kaarten[k][3] != kaarten[i][3]):
                     sets.append([kaarten[i], kaarten[j], kaarten[k]])
     return sets
+
+#code om precies een set uit een verzameling sets te vinden. 
+import random
+
+def vind_sets(kaarten):
+    sets = []
+    for i in range(len(kaarten)):
+        for j in range(i+1, len(kaarten)):
+            for k in range(j+1, len(kaarten)):
+                if (kaarten[i][0] == kaarten[j][0] == kaarten[k][0] or kaarten[i][0] != kaarten[j][0] != kaarten[k][0] != kaarten[i][0]) and (kaarten[i][1] == kaarten[j][1] == kaarten[k][1] or kaarten[i][1] != kaarten[j][1] != kaarten[k][1] != kaarten[i][1]) and (kaarten[i][2] == kaarten[j][2] == kaarten[k][2] or kaarten[i][2] != kaarten[j][2] != kaarten[k][2] != kaarten[i][2]) and (kaarten[i][3] == kaarten[j][3] == kaarten[k][3] or kaarten[i][3] != kaarten[j][3] != kaarten[k][3] != kaarten[i][3]):
+                    sets.append([kaarten[i], kaarten[j], kaarten[k]])
+    return random.choice(sets)
