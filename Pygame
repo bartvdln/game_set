@@ -1,0 +1,21 @@
+import pygame
+
+(width, height) = (900, 500)
+white = (160, 200, 150)
+
+display = pygame.display.set_mode((width, height))
+display.fill(white)
+pygame.display.set_caption('Sets')
+pygame.display.flip()
+
+from sys import exit
+while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+                
+            
+        
+        
+            
