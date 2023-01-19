@@ -1,11 +1,16 @@
 import pygame
 
+kaarten=[]
 (width, height) = (900, 500)
-white = (160, 200, 150)
+background = (160, 200, 150)
+
 
 display = pygame.display.set_mode((width, height))
-display.fill(white)
+display.fill(background)
 pygame.display.set_caption('Sets')
+pygame.display.flip()
+imp = pygame.image.load(kaarten[0]).convert()
+display.blit(imp, (0, 0))
 pygame.display.flip()
 
 from sys import exit
