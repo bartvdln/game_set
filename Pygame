@@ -1,12 +1,18 @@
 import pygame
 import random
 
+pygame.init()
+
 (width, height) = (1110, 240)
 background = (160, 200, 150)
+font = pygame.font.SysFont("arialblack", 40)
+TEXT_COL = (255, 255, 255)
+game_start = False
+fps = 60
 
-mx, my = pygame.mouse.get_pos()
-
-
+display = pygame.display.set_mode((width, height))
+display.fill(background)
+pygame.display.set_caption('Sets')
 
 kleur = ["g", "r", "p"]
 vorm = ["g", "o", "r"]
@@ -21,24 +27,39 @@ for i in range(0, 3):
 
 random.shuffle(kaarten)
 
-display = pygame.display.set_mode((width, height))
-display.fill(background)
-pygame.display.set_caption('Sets')
-pygame.display.flip()
-for i in range(0, 12):
-    kaart = pygame.image.load(fr"C:\Users\Berkhof\OneDrive - HvA\Documents\UU wis 1ste jaar\Sets Programmeren\Kaarten\{kaarten[i]}.gif").convert()
-    display.blit(kaart, (10 + 110*(i), 20))
+kaart_12 = []
+
+clock = pygame.time.Clock()
+
+
+def draw_cards():
+    for i in range(0, 12):
+        kaart = pygame.image.load(fr"C:\Users\Berkhof\OneDrive - Universiteit Utrecht\UU Wiskunde\Sets Programmeren\Kaarten\{kaarten[i]}.gif").convert()
+        kaart_12.append(kaart)
+        display.blit(kaart_12[i], (10 + 110*(i), 20))
+        pygame.display.flip() 
+
+def draw_texts(text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+    display.blit(img, (x, y))
+
+
+
+run = True
+while run:
+    
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                game_start = True
+    if game_start == False:
+        draw_texts("druk op SPATIE om te beginnen", font, TEXT_COL, 200, 100)
+    else:
+        draw_cards()
+            
+    if event.type == pygame.QUIT:
+        run = False
+    
     pygame.display.flip()
     
-
-
-
-
-from sys import exit
-while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-                
-        pygame.display.update()
+pygame.quit()
