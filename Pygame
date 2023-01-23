@@ -7,8 +7,6 @@ pygame.init()
 background = (160, 200, 150)
 font = pygame.font.SysFont("arialblack", 40)
 TEXT_COL = (255, 255, 255)
-game_start = False
-fps = 60
 
 display = pygame.display.set_mode((width, height))
 display.fill(background)
@@ -46,6 +44,7 @@ def draw_texts(text, font, text_col, x, y):
 
 
 run = True
+game_start = False
 while run:
     
     for event in pygame.event.get():
@@ -54,8 +53,12 @@ while run:
                 game_start = True
     if game_start == False:
         draw_texts("druk op SPATIE om te beginnen", font, TEXT_COL, 200, 100)
-    else:
+    
+    if game_start == True:
+        
         draw_cards()
+        
+    
             
     if event.type == pygame.QUIT:
         run = False
