@@ -16,7 +16,7 @@ blue = ((0,0,255))
 font_nummer = pygame.font.SysFont("arialblack", 15)
 zwart = ((0, 0, 0))
 kaarten_nummer = []
-sets = []
+sets = [0]
 display = pygame.display.set_mode((width, height))
 display.fill(background)
 pygame.display.set_caption('Sets')
@@ -67,7 +67,6 @@ def controleer_set(plaats1, plaats2, plaats3):
             kaarten_beeld[plaats3] = kaarten[12]
             kaarten.pop(12)
             
-            print(kaart1, kaarten_beeld[plaats1])
             
             display.fill(background)
             draw_cards()
@@ -122,9 +121,16 @@ while run:
                                 sets.append([kaarten_display[i], kaarten_display[j], kaarten_display[k]])
 
                 if len(sets) == 0:
-                    draw_texts('Geen sets, druk op "Enter" voor 3 nieuwe kaarten', font, zwart, 500, 240)
-                    if event.key == pygame.K_KP_ENTER:
-                        for i in range(0, 3):
+                        kaarten_beeld[0] = kaarten[12]
+                        kaarten.pop[12]
+                        kaarten_beeld[1] = kaarten[12]
+                        kaarten.pop[12]
+                        kaarten_beeld[2] = kaarten[12]
+                        kaarten.pop[12]
+                        
+                        display.fill(background)
+                        draw_cards()
+                        pygame.display.flip()
                             
                 
         if event.type == pygame.MOUSEBUTTONUP:
