@@ -30,11 +30,10 @@ for i in range(0, 3):
 random.shuffle(kaarten)
 
 kaarten_display = []
-print(kaarten)
 
 def draw_cards():
     for i in range(0, 12):
-        kaart = pygame.image.load(' '.join(kaarten[i]+".gif")).convert()
+        kaart = pygame.image.load(''.join(kaarten[i])+".gif").convert()
         kaarten_display.append(kaart)
         display.blit(kaarten_display[i], (10 + 110*(i), 20))
         pygame.display.flip() 
@@ -46,12 +45,29 @@ def draw_texts(text, font, text_col, x, y):
 kaarten_beeld = [kaarten[0], kaarten[1], kaarten[2], kaarten[3], kaarten[4], kaarten[5], kaarten[6], kaarten[7], kaarten[8], kaarten[9], kaarten[10], kaarten[11]]
 
 
-def controleer_set(kaart_i, kaart_j, kaart_k):
-	if ((kaart_i[0] == kaart_j[0] == kaart_k[0]) or (kaart_i[0] != kaart_j[0] != kaart_k[0])) and ((kaart_i[1] == kaart_j[1] == kaart_k[1]) or (kaart_i[1] != kaart_j[1] != kaart_k[1])) and ((kaart_i[2] == kaart_j[2] == kaart_k[2]) or (kaart_i[2] != kaart_j[2] != kaart_k[2])) and ((kaart_i[3] == kaart_j[3] == kaart_k[3]) or (kaart_i[3] != kaart_j[3] != kaart_k[3])): 
-		draw_texts("Set!", font, text_col_nummer, 500, 100)
-	else:
-		draw_texts("Geen set", font, text_col_nummer, 500, 100)
-
+def controleer_set(i, j, k):
+        if ((i[0] == j[0] == k[0]) or (i[0] != j[0] != k[0])) and ((i[1] == j[1] == k[1]) or (i[1] != j[1] != k[1])) and ((i[2] == j[2] == k[2]) or (i[2] != j[2] != k[2])) and ((i[3] == j[3] == k[3]) or (i[3] != j[3] != k[3])):
+            draw_texts("Set!", font, text_col_nummer, 500, 100)
+            kaarten_beeld[i] = kaarten[12]
+            kaarten.pop(12)
+        
+            kaarten_beeld[j] = kaarten[12]
+            kaarten.pop(12)
+            
+            kaarten_beeld[k] = kaarten[12]
+            kaarten.pop(12)
+            
+            display.fill(background)
+            draw_cards()
+            select_cards.clear()
+            
+            for i in range(0, 12):
+                getal = i
+                draw_texts(fr"{i + 1}", font_nummer, text_col_nummer, 15 + 110*i, 25)
+        
+        else:
+            draw_texts("Geen set", font, text_col_nummer, 565, 240)
+            select_cards.clear()
 
 
 run = True
@@ -61,7 +77,7 @@ if game_start == False:
     draw_texts("druk op SPATIE om te beginnen", font, TEXT_COL, 280, 100)
 
 
-
+select_cards = []
 
 while run:
     
@@ -75,7 +91,19 @@ while run:
                     getal = i
                     draw_texts(fr"{i + 1}", font_nummer, text_col_nummer, 15 + 110*i, 25)
                 game_start = True
-        
+                
+        if event.type == pygame.MOUSEBUTTONUP:
+            pos = pygame.mouse.get_pos()
+            x = pos[0]
+            y = pos[1]
+            for i in range(0, 12):
+            
+                if 10 +100*i < x < 110 + 100*i  and  20 < y < 220:
+                    select_cards.append(kaarten_beeld[i])
+                    if len(select_cards) == 3:
+                        controleer_set(select_cards[0], select_cards[1], select_cards[2])
+                
+        print(select_cards)
     
             
     if event.type == pygame.QUIT:
